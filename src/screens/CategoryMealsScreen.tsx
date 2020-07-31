@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 const CategoriyMealsScreen = () => {
     return (
         <View style={styles.screen}>
-            <Text>Categories Screen</Text>
+            <Text>Category Meals Screen</Text>
         </View>
     );
 };
