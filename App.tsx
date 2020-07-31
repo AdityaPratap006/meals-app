@@ -28,7 +28,7 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="auto" />
-      <MealsNavigator/>
+      <MealsNavigator />
     </React.Fragment>
   );
 }

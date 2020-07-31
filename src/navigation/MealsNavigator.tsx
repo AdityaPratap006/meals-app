@@ -7,7 +7,12 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 
 const MealsNavigator = createStackNavigator({
-    Categories: CategoriesScreen,
+    Categories: {
+        navigationOptions: {
+            title: 'La Cuisino',
+        },
+        screen: CategoriesScreen,
+    },
     CategoryMeals: {
         screen: CategoryMealsScreen,
     },
