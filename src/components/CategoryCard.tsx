@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback, Dimensions } from 'react-native';
 
 // Models
 import Category from '../models/category';
@@ -12,19 +12,21 @@ interface CategoryCardProp {
 const CategoryCard = ({ item, onSelect }: CategoryCardProp) => {
 
     return (
-        <TouchableOpacity
-            style={styles.card}
-            onPress={onSelect}
-        >
-            <View style={[
-                styles.container,
-                {
-                    backgroundColor: item.color,
-                }
-            ]}>
-                <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
-            </View>
-        </TouchableOpacity>
+        <View style={styles.card}>
+            <TouchableNativeFeedback
+                style={styles.touchable}
+                onPress={onSelect}
+            >
+                <View style={[
+                    styles.container,
+                    {
+                        backgroundColor: item.color,
+                    }
+                ]}>
+                    <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
+                </View>
+            </TouchableNativeFeedback>
+        </View>
     );
 };
 
@@ -39,10 +41,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
     },
+    touchable: {
+        flex: 1,
+    },
     container: {
         flex: 1,
         justifyContent: 'flex-end',
-        alignItems:'flex-end',
+        alignItems: 'flex-end',
         padding: 10,
         paddingBottom: 15,
     },

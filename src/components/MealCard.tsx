@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
 
 // Constants
 import { colors } from '../constants';
@@ -15,7 +15,11 @@ interface MealCardProp {
 
 const MealCard = ({ title, imageURL, duration, affordability, complexity, onSelect }: MealCardProp) => {
     return (
-        <TouchableOpacity style={styles.card} onPress={onSelect}>
+        <TouchableOpacity
+            style={styles.card}
+            activeOpacity={0.4}
+            onPress={onSelect}
+        >
             <View style={styles.container}>
                 <View style={[styles.mealRow, styles.mealHeader]}>
                     <ImageBackground
