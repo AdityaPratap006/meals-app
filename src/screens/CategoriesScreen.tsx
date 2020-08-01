@@ -13,9 +13,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
             <Button
                 title="Go to Meals!"
                 onPress={() => {
-                    navigation.navigate({
-                        routeName: "CategoryMeals",
-                    });
+                    navigation.navigate("CategoryMeals");
                 }}
             />
         </View>
