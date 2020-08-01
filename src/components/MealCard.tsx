@@ -24,7 +24,9 @@ const MealCard = ({ title, imageURL, duration, affordability, complexity, onSele
                         }}
                         style={styles.bgImage}
                     >
-                        <Text>{title}</Text>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>{title}</Text>
+                        </View>
                     </ImageBackground>
                 </View>
                 <View style={[styles.mealRow, styles.mealDetail]}>
@@ -50,22 +52,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         height: 300,
-        backgroundColor: 'white',
+        backgroundColor: '#f5f5f5',
     },
     mealRow: {
         flexDirection: 'row',
     },
     mealHeader: {
         height: '85%',
-        backgroundColor: 'orange'
     },
     bgImage: {
         width: '100%',
         height: '100%',
+        justifyContent: 'flex-end',
+    },
+    titleContainer: {
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        paddingVertical: 5,
+        paddingHorizontal: 12,
+    },
+    title: {
+        fontSize: 20,
+        fontFamily: 'open-sans',
+        color: 'white',
     },
     mealDetail: {
+        height: '15%', 
         paddingHorizontal: 10,
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     detailText: {
         fontSize: 14,
