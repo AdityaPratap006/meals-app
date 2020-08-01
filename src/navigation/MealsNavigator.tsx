@@ -1,6 +1,9 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
+// Constants
+import { colors } from '../constants';
+
 // Screens
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -15,6 +18,13 @@ const MealsNavigator = createStackNavigator({
     },
     MealDetail: {
         screen: MealDetailScreen,
+    },
+}, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: colors.primaryColor,
+        },
+        headerTintColor: "white",
     },
 });
 

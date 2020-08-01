@@ -1,19 +1,15 @@
 import React from 'react';
-import { StyleSheet, ListRenderItemInfo } from 'react-native';
+import { StyleSheet, ListRenderItemInfo, FlatList } from 'react-native';
 import { NavigationStackProp, NavigationStackOptions } from 'react-navigation-stack';
-import { FlatList } from 'react-native-gesture-handler';
 
 // Data
 import { CATEGORIES } from '../data/dummyData';
 
 // Models 
 import Category from '../models/category';
-import CategoryCard from '../components/CategoryCard';
-
-// Constants
-import { colors } from '../constants';
 
 // Components
+import CategoryCard from '../components/CategoryCard';
 
 interface CategoriesScreenProp {
     navigation: NavigationStackProp,
@@ -40,10 +36,6 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
 
 CategoriesScreen.navigationOptions = {
     headerTitle: "Meal Categories",
-    headerStyle: {
-        backgroundColor: colors.primaryColor,
-    },
-    headerTintColor: "white",
 } as NavigationStackOptions;
 
 export default CategoriesScreen;

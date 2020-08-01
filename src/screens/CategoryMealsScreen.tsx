@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
-// Constants
-import { colors } from '../constants';
-
 const CategoryMealsScreen = ({ navigation }: NavigationStackScreenProps) => {
     const categoryTitle: string = navigation.getParam('categoryTitle');
     return (
@@ -35,10 +32,6 @@ const navOptions = (navData: NavigationStackScreenProps): NavigationStackOptions
 
     return ({
         headerTitle: navData.navigation.getParam('categoryTitle') as string,
-        headerStyle: {
-            backgroundColor: colors.primaryColor,
-        },
-        headerTintColor: "white",
     });
 }
 
