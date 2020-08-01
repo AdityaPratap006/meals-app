@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
+import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
-interface MealDetailScreenProps {
-    navigation: NavigationStackProp;
-};
+// Data
+import { MEALS } from '../data/dummyData';
 
-const MealDetailScreen = ({ navigation }: MealDetailScreenProps) => {
+// Models
+import Meal from '../models/meal';
+
+// Constants
+import { colors } from '../constants';
+
+const MealDetailScreen = ({ navigation }: NavigationStackScreenProps) => {
     return (
         <View style={styles.screen}>
             <Text>Meal Details Screen</Text>
@@ -21,6 +26,22 @@ const MealDetailScreen = ({ navigation }: MealDetailScreenProps) => {
 };
 
 export default MealDetailScreen;
+
+const navOptions = (navData: NavigationStackScreenProps): NavigationStackOptions => {
+
+    const mealId = navData.navigation.getParam('mealId') as string;
+    const meal = MEALS.find(mealItem => mealItem.id === mealId) as Meal;
+
+    return ({
+        headerTitle: meal.title,
+        headerStyle: {
+            height: Dimensions.get('window').height * 0.20,
+            backgroundColor: colors.primaryColor,
+        }
+    });
+}
+
+MealDetailScreen.navigationOptions = navOptions;
 
 const styles = StyleSheet.create({
     screen: {

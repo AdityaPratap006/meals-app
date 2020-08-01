@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
 // Data
@@ -26,7 +26,14 @@ const CategoryMealsScreen = ({ navigation }: NavigationStackScreenProps) => {
                         duration={item.duration}
                         affordability={item.affordability}
                         complexity={item.complexity}
-                        onSelect={() => { }}
+                        onSelect={() => { 
+                            navigation.navigate({
+                                routeName: 'MealDetail',
+                                params: {
+                                    mealId: item.id,
+                                }
+                            });
+                        }}
                     />
                 )}
             />
