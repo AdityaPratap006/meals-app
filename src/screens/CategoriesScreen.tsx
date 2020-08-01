@@ -1,28 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ListRenderItemInfo, } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Data
 import { CATEGORIES } from '../data/dummyData';
 
+// Models 
+import Category from '../models/category';
+import CategoryCard from '../components/CategoryCard';
+
+// Components
+
 interface CategoriesScreenProp {
     navigation: NavigationStackProp,
 };
 
 const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
+
+    const renderGridItem = (data: ListRenderItemInfo<Category>) => {
+        const { item } = data;
+        return (
+           <CategoryCard item={item}/>
+        );
+    }
+
     return (
         <FlatList
             numColumns={2}
             keyExtractor={(item) => item.id}
-            data={CATEGORIES}
-            renderItem={({ item }) => {
-                return (
-                    <View>
-                        <Text>{item.title}</Text>
-                    </View>
-                );
-            }}
+            data={CATEGORIES}   
+            renderItem={renderGridItem}
         />
     );
 };
