@@ -7,9 +7,10 @@ interface CategoryMealsScreenProp {
 };
 
 const CategoryMealsScreen = ({ navigation }: CategoryMealsScreenProp) => {
+    const categoryTitle: string = navigation.getParam('categoryTitle');
     return (
         <View style={styles.screen}>
-            <Text>Category Meals Screen</Text>
+            <Text>{categoryTitle}</Text>
             <Button
                 title="Go to Meal Detail!"
                 onPress={() => {

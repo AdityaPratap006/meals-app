@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 
-
 // Models
 import Category from '../models/category';
 
@@ -16,6 +15,10 @@ const CategoryCard = ({ item, navigation }: CategoryCardProp) => {
     const navigateToCategoryMeals = () => {
         navigation.navigate({
             routeName: 'CategoryMeals',
+            params: {
+                categoryId: item.id,
+                categoryTitle: item.title,
+            },
         });
     }
 
