@@ -2,9 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackHeaderProps, HeaderBackButton } from 'react-navigation-stack';
 import ExpoConstants from 'expo-constants';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 // Constants
 import { colors } from '../constants';
+
+// Components
+import CustomHeaderButton from '../components/CustomHeaderButton';
 
 interface ExtendedAppBarProp {
     title: string;
@@ -21,6 +25,11 @@ const ExtendedAppBar = ({ title, headerProps }: ExtendedAppBarProp) => {
                         headerProps.navigation.pop();
                     }}
                 />
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item title="Favorite" iconName="ios-star" onPress={() => {
+                        console.log("Mark as Favorite");
+                    }} />
+                </HeaderButtons>
             </View>
             <View style={styles.titleRow}>
                 <Text style={styles.title} numberOfLines={2}>{title}</Text>
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
         height: '50%',
         width: '100%',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     titleRow: {
