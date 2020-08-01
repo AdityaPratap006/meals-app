@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
-interface CategoryMealsScreenProp {
-    navigation: NavigationStackProp,
-};
+// Constants
+import { colors } from '../constants';
 
-const CategoryMealsScreen = ({ navigation }: CategoryMealsScreenProp) => {
+const CategoryMealsScreen = ({ navigation }: NavigationStackScreenProps) => {
     const categoryTitle: string = navigation.getParam('categoryTitle');
     return (
         <View style={styles.screen}>
@@ -29,7 +28,21 @@ const CategoryMealsScreen = ({ navigation }: CategoryMealsScreenProp) => {
     );
 };
 
+
 export default CategoryMealsScreen;
+
+const navOptions = (navData: NavigationStackScreenProps): NavigationStackOptions => {
+
+    return ({
+        headerTitle: navData.navigation.getParam('categoryTitle') as string,
+        headerStyle: {
+            backgroundColor: colors.primaryColor,
+        },
+        headerTintColor: "white",
+    });
+}
+
+CategoryMealsScreen.navigationOptions = navOptions;
 
 const styles = StyleSheet.create({
     screen: {
