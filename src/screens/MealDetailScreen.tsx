@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
 // Data
@@ -8,13 +8,17 @@ import { MEALS } from '../data/dummyData';
 // Models
 import Meal from '../models/meal';
 
-// Constants
-import { colors } from '../constants';
+// Components
+import ExtendedAppBar from '../components/ExtendedAppBar';
+
 
 const MealDetailScreen = ({ navigation }: NavigationStackScreenProps) => {
+    const mealId = navigation.getParam('mealId') as string;
+    const meal = MEALS.find(mealItem => mealItem.id === mealId) as Meal;
+
     return (
         <View style={styles.screen}>
-            <Text>Meal Details Screen</Text>
+            <Text>{meal.title}</Text>
             <Button
                 title="Go to Categories"
                 onPress={() => {
@@ -33,11 +37,7 @@ const navOptions = (navData: NavigationStackScreenProps): NavigationStackOptions
     const meal = MEALS.find(mealItem => mealItem.id === mealId) as Meal;
 
     return ({
-        headerTitle: meal.title,
-        headerStyle: {
-            height: Dimensions.get('window').height * 0.20,
-            backgroundColor: colors.primaryColor,
-        }
+        header: (props) => <ExtendedAppBar title={meal.title} headerProps={props} />,
     });
 }
 

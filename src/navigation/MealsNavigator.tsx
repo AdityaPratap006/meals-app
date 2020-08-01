@@ -22,12 +22,15 @@ const MealsNavigator = createStackNavigator({
 }, {
     initialRouteName: "Categories",
     defaultNavigationOptions: {
+        headerTitleStyle: {
+            fontFamily: 'open-sans-bold',
+        },
         headerStyle: {
             backgroundColor: colors.primaryColor,
+            elevation: 5,
         },
         headerTintColor: "white",
     },
 });
 
 export default createAppContainer(MealsNavigator);
- 
