@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 
 // Models
 import Category from '../models/category';
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         margin: 15,
-        height: 150,
+        height: Dimensions.get("window").height * 0.20,
         elevation: 10,
         borderRadius: 10,
         overflow: 'hidden',

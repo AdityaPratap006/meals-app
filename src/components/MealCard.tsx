@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 
 // Constants
 import { colors } from '../constants';
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        height: 300,
+        height: Dimensions.get("window").height * 0.50,
         backgroundColor: '#f5f5f5',
     },
     mealRow: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     mealDetail: {
-        height: '15%', 
+        height: '15%',
         paddingHorizontal: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
