@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ListRenderItemInfo, } from 'react-native';
+import { StyleSheet, ListRenderItemInfo, } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -21,7 +21,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
     const renderGridItem = (data: ListRenderItemInfo<Category>) => {
         const { item } = data;
         return (
-           <CategoryCard item={item}/>
+            <CategoryCard item={item} navigation={navigation} />
         );
     }
 
@@ -29,7 +29,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
         <FlatList
             numColumns={2}
             keyExtractor={(item) => item.id}
-            data={CATEGORIES}   
+            data={CATEGORIES}
             renderItem={renderGridItem}
         />
     );
