@@ -24,6 +24,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
                 navigation.navigate({
                     routeName: 'CategoryMeals',
                     params: {
+                        categoryId: item.id,
                         categoryTitle: item.title,
                     }
                 });
