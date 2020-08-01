@@ -1,6 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
+import { FlatList } from 'react-native-gesture-handler';
+
+// Data
+import { CATEGORIES } from '../data/dummyData';
 
 interface CategoriesScreenProp {
     navigation: NavigationStackProp,
@@ -8,15 +12,18 @@ interface CategoriesScreenProp {
 
 const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
     return (
-        <View style={styles.screen}>
-            <Text>Categories Screen</Text>
-            <Button
-                title="Go to Meals!"
-                onPress={() => {
-                    navigation.navigate("CategoryMeals");
-                }}
-            />
-        </View>
+        <FlatList
+            numColumns={2}
+            keyExtractor={(item) => item.id}
+            data={CATEGORIES}
+            renderItem={({ item }) => {
+                return (
+                    <View>
+                        <Text>{item.title}</Text>
+                    </View>
+                );
+            }}
+        />
     );
 };
 
