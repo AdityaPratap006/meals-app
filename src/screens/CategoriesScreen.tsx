@@ -20,7 +20,14 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
     const renderGridItem = (data: ListRenderItemInfo<Category>) => {
         const { item } = data;
         return (
-            <CategoryCard item={item} navigation={navigation} />
+            <CategoryCard item={item} onSelect={() => {
+                navigation.navigate({
+                    routeName: 'CategoryMeals',
+                    params: {
+                        categoryTitle: item.title,
+                    }
+                });
+            }} />
         );
     }
 

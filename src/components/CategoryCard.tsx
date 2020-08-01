@@ -7,28 +7,23 @@ import Category from '../models/category';
 
 interface CategoryCardProp {
     item: Category;
-    navigation: NavigationStackProp;
+    onSelect: () => void;
 };
 
-const CategoryCard = ({ item, navigation }: CategoryCardProp) => {
-
-    const navigateToCategoryMeals = () => {
-        navigation.navigate({
-            routeName: 'CategoryMeals',
-            params: {
-                categoryId: item.id,
-                categoryTitle: item.title,
-            },
-        });
-    }
+const CategoryCard = ({ item, onSelect }: CategoryCardProp) => {
 
     return (
         <TouchableOpacity
             style={styles.card}
-            onPress={navigateToCategoryMeals}
+            onPress={onSelect}
         >
-            <View>
-                <Text>{item.title}</Text>
+            <View style={[
+                styles.container,
+                {
+                    backgroundColor: item.color,
+                }
+            ]}>
+                <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -41,5 +36,20 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
         height: 150,
+        elevation: 10,
+        borderRadius: 10,
+        overflow: 'hidden',
     },
+    container: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems:'flex-end',
+        padding: 10,
+        paddingBottom: 15,
+    },
+    title: {
+        fontFamily: 'open-sans-bold',
+        fontSize: 18,
+        textAlign: 'right',
+    }
 });
