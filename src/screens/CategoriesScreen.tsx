@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, ListRenderItemInfo, FlatList, View } from 'react-native';
-import { NavigationStackProp, NavigationStackOptions } from 'react-navigation-stack';
+import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
+import { NavigationDrawerScreenProps } from 'react-navigation-drawer';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { NavigationBottomTabOptions } from 'react-navigation-tabs';
 
 // Data
 import { CATEGORIES } from '../data/dummyData';
@@ -10,18 +13,17 @@ import Category from '../models/category';
 
 // Components
 import CategoryCard from '../components/CategoryCard';
+import CustomHeaderButton from '../components/CustomHeaderButton';
 
-interface CategoriesScreenProp {
-    navigation: NavigationStackProp,
-};
+type nestedNavigationScreenProp = NavigationStackScreenProps & NavigationBottomTabOptions & NavigationDrawerScreenProps;
 
-const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
+const CategoriesScreen = (props: NavigationStackScreenProps) => {
 
     const renderGridItem = (data: ListRenderItemInfo<Category>) => {
         const { item } = data;
         return (
             <CategoryCard item={item} onSelect={() => {
-                navigation.navigate({
+                (props as nestedNavigationScreenProp).navigation.navigate({
                     routeName: 'CategoryMeals',
                     params: {
                         categoryId: item.id,
@@ -45,9 +47,23 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
     );
 };
 
-CategoriesScreen.navigationOptions = {
-    headerTitle: "Meal Categories",
-} as NavigationStackOptions;
+CategoriesScreen.navigationOptions = (navData: NavigationStackScreenProps): NavigationStackOptions => {
+    
+    return ({
+        headerTitle: "Meal Categories",
+        headerLeft: (props) => (
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item
+                    title="Menu"
+                    iconName="md-menu"
+                    onPress={() => {
+                        (navData as nestedNavigationScreenProp).navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+    });
+};
 
 export default CategoriesScreen;
 

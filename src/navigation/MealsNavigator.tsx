@@ -115,7 +115,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     tabScreensConfig,
     {
         tabBarOptions: {
-            activeBackgroundColor: 'white',
+            activeBackgroundColor: 'white', 
             activeTintColor: colors.primaryColor,
         },
     }
