@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ListRenderItemInfo, FlatList } from 'react-native';
+import { StyleSheet, ListRenderItemInfo, FlatList, View } from 'react-native';
 import { NavigationStackProp, NavigationStackOptions } from 'react-navigation-stack';
 
 // Data
@@ -33,12 +33,15 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProp) => {
     }
 
     return (
+        <View style={styles.screen}>
             <FlatList
+                style={styles.list}
                 numColumns={2}
                 keyExtractor={(item) => item.id}
                 data={CATEGORIES}
                 renderItem={renderGridItem}
             />
+        </View>
     );
 };
 
@@ -49,5 +52,15 @@ CategoriesScreen.navigationOptions = {
 export default CategoriesScreen;
 
 const styles = StyleSheet.create({
-
+    screen: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+    list: {
+        width: '100%',
+    }
 });
