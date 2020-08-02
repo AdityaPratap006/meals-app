@@ -6,7 +6,8 @@ import { NavigationStackOptions, NavigationStackScreenProps } from 'react-naviga
 import { MEALS } from '../data/dummyData';
 
 // Components
-import MealCard from '../components/MealCard';
+import MealCardList from '../components/MealCardList';
+
 
 const CategoryMealsScreen = ({ navigation }: NavigationStackScreenProps) => {
     const categoryId: string = navigation.getParam('categoryId');
@@ -15,28 +16,10 @@ const CategoryMealsScreen = ({ navigation }: NavigationStackScreenProps) => {
 
     return (
         <View style={styles.screen}>
-            <FlatList
-                style={styles.list}
-                data={displayedMeals}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => (
-                    <MealCard
-                        title={item.title}
-                        imageURL={item.imageUrl}
-                        duration={item.duration}
-                        affordability={item.affordability}
-                        complexity={item.complexity}
-                        onSelect={() => { 
-                            navigation.navigate({
-                                routeName: 'MealDetail',
-                                params: {
-                                    mealId: item.id,
-                                }
-                            });
-                        }}
-                    />
-                )}
-            />
+             <MealCardList
+                mealList={displayedMeals}
+                navigation={navigation}
+             />
         </View>
     );
 };
@@ -60,7 +43,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
     },
-    list: {
-        width: '100%',
-    }
+    
 });
