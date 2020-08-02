@@ -1,7 +1,13 @@
 import React from 'react';
 // import { Platform } from 'react-native';
-import { createAppContainer, NavigationRouteConfigMap, NavigationRoute, NavigationParams } from 'react-navigation';
+import {
+    createAppContainer,
+    NavigationRouteConfigMap,
+    NavigationRoute,
+    NavigationParams,
+} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { StackNavigationOptions } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 import { createBottomTabNavigator, NavigationBottomTabOptions, NavigationTabProp } from 'react-navigation-tabs';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 // import { createMaterialBottomTabNavigator, NavigationMaterialBottomTabOptions } from 'react-navigation-material-bottom-tabs';
@@ -14,6 +20,17 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+
+const defaultStackNavigationOptions: StackNavigationOptions = {
+    headerTitleStyle: {
+        fontFamily: 'open-sans-bold',
+    },
+    headerStyle: {
+        backgroundColor: colors.primaryColor,
+        elevation: 5,
+    },
+    headerTintColor: "white",
+}
 
 const MealsStackNavigator = createStackNavigator(
     {
@@ -29,17 +46,22 @@ const MealsStackNavigator = createStackNavigator(
     },
     {
         initialRouteName: "Categories",
-        defaultNavigationOptions: {
-            headerTitleStyle: {
-                fontFamily: 'open-sans-bold',
-            },
-            headerStyle: {
-                backgroundColor: colors.primaryColor,
-                elevation: 5,
-            },
-            headerTintColor: "white",
+        defaultNavigationOptions: defaultStackNavigationOptions,
+    },
+);
+
+const FavoritesStackNavigator = createStackNavigator(
+    {
+        Favorites: {
+            screen: FavoritesScreen,
         },
-    }
+        MealDetail: {
+            screen: MealDetailScreen,
+        },
+    },
+    {
+        defaultNavigationOptions: defaultStackNavigationOptions,
+    },
 );
 
 let tabScreensConfig: NavigationRouteConfigMap<NavigationBottomTabOptions, NavigationTabProp<NavigationRoute<NavigationParams>, any>, unknown>;
@@ -60,7 +82,7 @@ tabScreensConfig = {
         },
     },
     Favorites: {
-        screen: FavoritesScreen,
+        screen: FavoritesStackNavigator,
         navigationOptions: {
             tabBarLabel: "Favorites",
             tabBarIcon: (tabInfo) => {
