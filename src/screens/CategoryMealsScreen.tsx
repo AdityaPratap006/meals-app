@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
 // Data
