@@ -134,8 +134,30 @@ const FilterStack = createStackNavigator(
 
 const MainDrawerNavigator = createDrawerNavigator(
     {
-        Home: MealsFavTabNavigator,
-        Filters: FilterStack,
+        Home: {
+            screen: MealsFavTabNavigator,
+            navigationOptions: {
+                drawerLabel: 'Recipes',
+            },
+        },
+        Filters: {
+            screen: FilterStack,
+            navigationOptions: {
+                drawerLabel: 'Filters',
+            }
+        },
+    },
+    {
+        contentOptions: {
+            activeTintColor: colors.primaryColor,
+            activeBackgroundColor: colors.primaryColorTransparent,
+            inactiveTintColor: '#444',
+            labelStyle: {
+                fontFamily: 'open-sans',
+                fontSize: 22,
+            },
+        },
+        drawerBackgroundColor: 'white',
     }
 );
 
