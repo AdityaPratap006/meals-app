@@ -47,7 +47,7 @@ const FiltersScreen = (props: NavigationStackScreenProps) => {
 
     return (
         <View style={styles.screen}>
-            <Text style={styles.title}>Filters Screen</Text>
+            <Text style={styles.title}>Available Filters</Text>
             <FilterSwitch
                 title='Gluten Free'
                 state={isGlutenFree}
