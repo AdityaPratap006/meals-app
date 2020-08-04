@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, Switch } from 'react-native';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 import { NavigationBottomTabOptions } from 'react-navigation-tabs';
@@ -39,11 +39,28 @@ const FilterSwitch = (props: FilrerSwitchProp) => {
 type nestedNavigationScreenProp = NavigationStackScreenProps & NavigationBottomTabOptions & NavigationDrawerScreenProps;
 
 const FiltersScreen = (props: NavigationStackScreenProps) => {
-
+    const { navigation } = props;
     const [isGlutenFree, setIsGlutenFree] = useState<boolean>(false);
     const [isVegetarian, setIsVegetarian] = useState<boolean>(false);
     const [isVegan, setIsVegan] = useState<boolean>(false);
     const [isLactoseFree, setIsLactoseFree] = useState<boolean>(false);
+
+    const saveFilters = useCallback(function whenFiltersChange() {
+        const appliedFilters = {
+            isGlutenFree,
+            isVegetarian,
+            isVegan,
+            isLactoseFree,
+        };
+
+        console.log(appliedFilters);
+    }, [isGlutenFree, isVegetarian, isVegan, isLactoseFree]);
+
+    useEffect(function saveFiltersChanges() {
+        navigation.setParams({
+            save: saveFilters,
+        });
+    }, [saveFilters]);
 
     return (
         <View style={styles.screen}>
@@ -83,6 +100,18 @@ const navOptions = (navData: NavigationStackScreenProps): NavigationStackOptions
                 iconName="md-menu"
                 onPress={() => {
                     (navData as nestedNavigationScreenProp).navigation.toggleDrawer();
+                }}
+            />
+        </HeaderButtons>
+    ),
+    headerRight: (props) => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+            <Item
+                title="Save"
+                iconName="ios-save"
+                onPress={() => {
+                    const saveFilters: () => void = (navData as nestedNavigationScreenProp).navigation.getParam('save');
+                    saveFilters();
                 }}
             />
         </HeaderButtons>
